@@ -1,0 +1,37 @@
+div.node {
+    width: fit-content;
+    cursor: pointer;
+    line-height: 17px;
+}
+
+img {
+    float: left;
+    line-height: 17px;
+}
+
+div.text {
+    display: inline-block;
+    line-height: 15px;
+    font-family: arial;
+    border: 1px solid lightgoldenrodyellow;
+    color:black;
+    background: lightgoldenrodyellow;
+}
+
+div.description {
+    display: inline-block;
+    line-height: 15px;
+    font-family: arial;
+}
+
+div.text:hover {
+    border: 1px solid darkgoldenrod;
+    color:black;
+    background: darkgoldenrod;
+}
+
+div.text:active {
+    border: 1px solid black;
+    color:white;
+    background: black;
+}

@@ -1,0 +1,33 @@
+<div id="{{ node.id }}" class="node">
+    <span>
+        <span *ngIf="node.ancestors.length > 0">
+            <span *ngFor="let p of node.ancestors">
+                <img *ngIf="!p.lastNode" src="./assets/line_continue.png"/>
+                <img *ngIf="p.lastNode" src="./assets/blank_node.png"/>
+            </span>
+        </span>
+        
+        <img *ngIf="!node.lastNode" src="./assets/line_node_and_continue.png"/>
+        <img *ngIf="node.lastNode" src="./assets/line_node_and_end.png"/>
+        <img *ngIf="hasLeaf() && node.expand" src="./assets/collapse_icon.png" (click)="clickExpandCollapse()"/>
+        <img *ngIf="hasLeaf() && !node.expand" src="./assets/expand_icon.png" (click)="clickExpandCollapse()"/>
+        <img *ngIf="!hasLeaf()" src="./assets/line_sheet.png"/>
+    </span>   
+
+    <div class="text" title="His parent is: {{ getParentName() }} with id: {{ getParentId() }}">
+        <b>{{ node.name }}</b>
+    </div>
+    <img *ngIf="hasParent()" src="./assets/left.png" title="Move to parent node" (click)="moveToParent()"/>
+    <img *ngIf="!node.firstNode" src="./assets/up.png" title="Swap up node" (click)="upNode()"/>
+    <img *ngIf="!node.lastNode" src="./assets/down.png" title="Swap down node" (click)="downNode()"/>
+    <div class="description">
+        {{ node.description }}
+    </div>
+</div>
+<div *ngIf="hasLeaf()">
+    <div *ngIf="node.expand">
+        <div *ngFor="let child of node.children; let firstNodeChild = first; let lastNodeChild = last">
+            <app-node-tree [node]="child" [parent]="node" [firstNode]="firstNodeChild" [lastNode]="lastNodeChild"></app-node-tree>
+        </div>
+    </div>
+</div>
